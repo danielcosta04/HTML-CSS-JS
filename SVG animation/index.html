@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Animation with Filter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #111;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg width="600" height="200">
+            <filter id="turbulence">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="3" result="noise"/>
+                <feDisplacementMap in2="noise" scale="20"/>
+            </filter>
+            <rect width="600" height="200" style="filter: url(#turbulence); fill: lightblue;"/>
+        </svg>
+    </div>
+    <script>
+        const turbulence = document.querySelector("#turbulence feTurbulence");
+        let frames = 0;
+        const rad = Math.PI / 180;
+
+        if (turbulence) {
+            function freqAnimation() {
+                let bfx = 0.01;
+                let bfy = 0.01;
+                frames += 0.5;
+                bfx += 0.0025 * Math.cos(frames * rad);
+                bfy += 0.0025 * Math.sin(frames * rad);
+
+                const bf = `${bfx.toFixed(4)} ${bfy.toFixed(4)}`;
+                turbulence.setAttribute("baseFrequency", bf);
+                window.requestAnimationFrame(freqAnimation);
+            }
+
+            window.requestAnimationFrame(freqAnimation);
+        } else {
+            console.error("Elemento <feTurbulence> não encontrado.");
+        }
+    </script>
+</body>
+</html>
