@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #1e3c72, #2a5298); /* Fundo com gradiente azul */
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cloud {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+.cloud-image {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.drop {
+    position: absolute;
+    top: 50px; /* Ajuste para que as gotas comecem a cair da nuvem */
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    font-family: monospace;
+    animation: fall linear infinite;
+    z-index: 2; /* Gotas sobre a imagem */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
