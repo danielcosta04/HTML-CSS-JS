@@ -1,5 +1,5 @@
 function randonText() {
-    var text = "!@#$%^*()";
+    var text = "!@#$%^*?]{()";
     let letters = text[Math.floor(Math.random() * text.length)];
     return letters;
 }
