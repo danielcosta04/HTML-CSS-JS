@@ -1,5 +1,5 @@
 function randonText() {
-    var text = "!@#$%^*?]{008885()";
+    var text = "!@#$%^0%%%%%%%%%%%%%%%*?]{008885()";
     let letters = text[Math.floor(Math.random() * text.length)];
     return letters;
 }
